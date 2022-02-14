@@ -1,4 +1,4 @@
-<h1>Installment and Running Inference on Windows</h1>
+<h1>What's in the github</h1>
 
 This github includes following documents to instruct you on installing, running inference, and running retraining on rai software. This github also provided python scripts if you can not hae access to the Rail_Software_Installment_2021.zip
 
