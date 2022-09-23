@@ -20,14 +20,16 @@ cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_X_101_
 # cfg.DATASETS.TEST = ()
 # cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'
 # cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'+'fintune_on_sleeper_shark_continue2'
-cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'+'fintune_on_sleeper_shark_plus_chain_continue'
+# cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'+'fintune_on_sleeper_shark_plus_chain_continue'
+cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things_sleeper_nonfish'
 
 
 cfg.DATALOADER.NUM_WORKERS = 2
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(thing_classes)   # only has one class (ballon). (see https://detectron2.readthedocs.io/tutorials/datasets.html#update-the-config-for-new-datasets)
 # cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0474999.pth")  # path to the model we just trained
 # cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0044999.pth")  # path to the model we just trained
-cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0104999.pth")  # path to the model we just trained
+# cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0104999.pth")  # path to the model we just trained
+cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0079999.pth")  # path to the model we just trained
 
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7   # set a custom testing threshold
 cfg.DATASETS.TEST = ('rail_test',)
@@ -36,7 +38,7 @@ predictor = DefaultPredictor(cfg)
 
 # data_path = './dataset_preprocess/dataset_dicts.npz'
 # data_path = './dataset_preprocess/only_sleeper_shark/dataset_dicts.npz'
-data_path = './dataset_preprocess/only_sleeper_shark_plus_chain/dataset_dicts.npz'
+data_path = './dataset_preprocess/rail_data/dataset_dicts.npz'
 
 ### randomly select several samples to visualize the prediction results. ###
 for d in ["train", "test"]:
@@ -48,7 +50,8 @@ rail_metadata = MetadataCatalog.get("rail_test")
 dataset_dicts = rail_dataset_function(data_path, 'test')
 # sample_save_dir = "./output_eva_"+str(len(thing_classes))+'_things'
 # sample_save_dir = "./output_eva_"+str(len(thing_classes))+'_things_sleeper_shark'
-sample_save_dir = "./output_eva_"+str(len(thing_classes))+'_things_sleeper_shark_plus_chain_continue'
+# sample_save_dir = "./output_eva_"+str(len(thing_classes))+'_things_sleeper_shark_plus_chain_continue'
+sample_save_dir = "./output_eva_"+str(len(thing_classes))+'_things_sleeper_nonfish'
 
 if not os.path.exists(sample_save_dir):
     os.makedirs(sample_save_dir)
@@ -78,7 +81,7 @@ for d in random.sample(dataset_dicts, 50):
     cv2.imshow('inference sample',out.get_image()[:, :, ::-1])
     cv2.waitKey(1000)
     cv2.destroyAllWindows()
-embed()
+# embed()
 
 ### evaluate mAP ###
 evaluator = COCOEvaluator("rail_test", ('bbox',), False, output_dir=sample_save_dir)
