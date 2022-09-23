@@ -14,3 +14,6 @@ If you want to retrain the model for your own purpose/dataset, please refer to t
 [Retraining with Sleeper Shark Data as an example](https://docs.google.com/document/d/1gskPeOpe3sVmTnHM7V9udBXaGCpULW8moL9OQFG0atY/edit?usp=sharing)
 
 
+<h1>Pre-trained Models</h1>
+[Fish-Birds-nonfish-Sleeper Sharks]
+(https://drive.google.com/drive/folders/1OQaq8QkUiOmX2b-HHHLCfBJqRnvJ8E_-)
