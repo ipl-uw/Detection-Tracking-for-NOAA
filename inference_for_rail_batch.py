@@ -91,7 +91,7 @@ cfg = get_cfg()
 cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml"))
 # cfg.DATASETS.TRAIN = ("rail_train",)
 # cfg.DATASETS.TEST = ()
-cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things_nonfish_sleeper_shark'
+cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things_sleeper_nonfish'
 cfg.DATALOADER.NUM_WORKERS = 2
 cfg.MODEL.DEVICE = "cuda:1"
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(thing_classes)  # only has one class (ballon). (see https://detectron2.readthedocs.io/tutorials/datasets.html#update-the-config-for-new-datasets)
