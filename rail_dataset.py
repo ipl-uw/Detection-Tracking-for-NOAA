@@ -65,6 +65,8 @@ def generate_rail_dataset(label_dir, sub_folder):
     print('Not found alias: ', Not_found_alias)
     ### top 90% for train, last 10% for test ###
     random.shuffle(dataset_dicts)
+    if not os.path.exists('./dataset_preprocess/'+sub_folder):
+        os.makedirs('./dataset_preprocess/'+sub_folder)
     np.savez('./dataset_preprocess/'+sub_folder+'/original_sp_count.npz', original_sp_count)
     np.savez('./dataset_preprocess/'+sub_folder+'/Alias_sp_count.npz', Alias_sp_count)
     np.savez('./dataset_preprocess/'+sub_folder+'/dataset_dicts.npz', dataset_dicts)
@@ -76,7 +78,7 @@ if __name__ == '__main__':
     # label_path = '/run/user/1000/gvfs/afp-volume:host=IPL-NOAA.local,user=Jie%20Mei,volume=home/rail data/labels'
 
     # save folder for labels
-    label_path = '/run/user/1000/gvfs/smb-share:server=ipl-noaa.local,share=homes/Jie Mei/sleeper shark data chain/labels'
+    label_path = '/run/user/1000/gvfs/smb-share:server=ipl-noaa.local,share=homes/Jie Mei/rail data/labels'
     # represents the feature of this new data
-    sub_folder = 'only_sleeper_shark_plus_chain'
+    sub_folder = 'rail_data'
     dataset_dicts = generate_rail_dataset(label_path, sub_folder)

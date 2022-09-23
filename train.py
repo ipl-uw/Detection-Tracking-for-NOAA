@@ -21,10 +21,10 @@ import random, cv2
 from dataset_preprocess.xml_to_dict import category_ids
 
 ### Plot data distribution ###
-data_path = './dataset_preprocess/only_sleeper_shark_plus_chain/dataset_dicts.npz'
-plot_data_distribution('./dataset_preprocess/only_sleeper_shark_plus_chain/original_sp_count.npz',
-                       './dataset_preprocess/only_sleeper_shark_plus_chain/Alias_sp_count.npz',
-                       './dataset_preprocess/only_sleeper_shark_plus_chain/data distribution.png')
+data_path = './dataset_preprocess/rail_data/dataset_dicts.npz'
+plot_data_distribution('./dataset_preprocess/rail_data/original_sp_count.npz',
+                       './dataset_preprocess/rail_data/Alias_sp_count.npz',
+                       './dataset_preprocess/rail_data/data distribution.png')
 
 
 ### register dataset ###
@@ -52,15 +52,15 @@ from detectron2.engine import DefaultTrainer
 
 cfg = get_cfg()
 cfg.MODEL.DEVICE='cuda:1'
-# cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'
-cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'+'fintune_on_sleeper_shark_plus_chain_continue'
+cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things_sleeper_nonfish'
+# cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'+'fintune_on_sleeper_shark_plus_chain_continue'
 cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml"))
 cfg.DATASETS.TRAIN = ("rail_train",)
 cfg.DATASETS.TEST = ()
 cfg.DATALOADER.NUM_WORKERS = 2
 # cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml")  # Let training initialize from model zoo
-# cfg.MODEL.WEIGHTS = "/home/jiemei/Documents/rail_detection/output_5_things/model_final.pth"  # Let training initialize from model zoo
-cfg.MODEL.WEIGHTS = "/home/jiemei/Documents/rail_detection/output_5_thingsfintune_on_sleeper_shark_plus_chain/model_0199999.pth"  # Let training initialize from model zoo
+cfg.MODEL.WEIGHTS = "/home/jiemei/Documents/rail_detection/output_5_things/model_final.pth"  # Let training initialize from model zoo
+# cfg.MODEL.WEIGHTS = "/home/jiemei/Documents/rail_detection/output_5_thingsfintune_on_sleeper_shark_plus_chain/model_0199999.pth"  # Let training initialize from model zoo
 
 cfg.SOLVER.IMS_PER_BATCH= 3
 cfg.SOLVER.BASE_LR = 0.0001  # pick a good LR
