@@ -11,7 +11,7 @@ If you can not have access to the Rail_Software_Installment_2021.zip mentioned i
 <h1>Retraining Detector</h1>
 
 If you want to retrain the model for your own purpose/dataset, please refer to this document
-[Retraining with Sleeper Shark Data as an example](https://docs.google.com/document/d/1gskPeOpe3sVmTnHM7V9udBXaGCpULW8moL9OQFG0atY/edit?usp=sharing)
+[Retraining with Sleeper Shark Data](https://docs.google.com/document/d/1gskPeOpe3sVmTnHM7V9udBXaGCpULW8moL9OQFG0atY/edit?usp=sharing) as an example
 
 
 <h1>Pre-trained Models</h1>
