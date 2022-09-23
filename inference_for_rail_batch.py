@@ -91,11 +91,12 @@ cfg = get_cfg()
 cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml"))
 # cfg.DATASETS.TRAIN = ("rail_train",)
 # cfg.DATASETS.TEST = ()
-cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things'
+cfg.OUTPUT_DIR = './output_'+str(len(thing_classes))+'_things_nonfish_sleeper_shark'
 cfg.DATALOADER.NUM_WORKERS = 2
 cfg.MODEL.DEVICE = "cuda:1"
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(thing_classes)  # only has one class (ballon). (see https://detectron2.readthedocs.io/tutorials/datasets.html#update-the-config-for-new-datasets)
-cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0484999.pth")  # path to the model we just trained
+# cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0484999.pth")  # path to the model we just trained
+cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_0079999.pth")  # path to the model we just trained
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7   # set a custom testing threshold
 cfg.DATASETS.TEST = ('rail_test',)
 cfg.MODEL.ROI_HEADS.NMS_THRESH_TEST = 0.3
@@ -108,7 +109,7 @@ DetectionCheckpointer(model).load(cfg.MODEL.WEIGHTS) # must load weights this wa
 model.eval()
 
 
-data_path = './dataset_preprocess/dataset_dicts.npz'
+data_path = './dataset_preprocess/rail_data/dataset_dicts.npz'
 DatasetCatalog.register("rail_" + "test", lambda d="test":rail_dataset_function(data_path, mode=d))
 MetadataCatalog.get("rail_" + "test").set(thing_classes=thing_classes)
 rail_metadata = MetadataCatalog.get("rail_test")
